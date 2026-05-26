@@ -1,90 +1,151 @@
+interface FooterLink {
+  label: string;
+  href: string;
+}
+
+const offices = [
+  {
+    city: "London",
+    address:
+      "Linktia Infosystems Ltd \u2013 CB7, 26 Main Road Sundridge, TN14 6EP, England, United Kingdom.",
+  },
+  {
+    city: "Dubai",
+    address:
+      "Linktia Infosystems Ltd \u2013 CB7, Jumeirah Business, Center 5 Cluster W, Jumeirah Lakes Towers, Dubai, United Arab Emirates.",
+  },
+  {
+    city: "Pune",
+    address:
+      "Linktia Infosystems Ltd \u2013 CB7, Nirmal, Anand Nagar, Suncity Road, Pune, Maharashtra, 411041, India.",
+  },
+];
+
+const solutionsLinks: FooterLink[] = [
+  { label: "Core Banking CB7", href: "#" },
+  { label: "Digital Banking N7", href: "#" },
+  { label: "Open Banking", href: "#" },
+  { label: "Loan Origination System", href: "#" },
+  { label: "Loan Management System", href: "#" },
+  { label: "Digital Transformation", href: "#" },
+];
+
+const bankingLinks: FooterLink[] = [
+  { label: "About Us", href: "#" },
+  { label: "Solutions", href: "#" },
+  { label: "Contact", href: "#" },
+  { label: "Company", href: "#" },
+  { label: "Careers", href: "#" },
+  { label: "Insights", href: "#" },
+  { label: "Core Team", href: "#" },
+  { label: "Brand Center", href: "#" },
+];
+
+const socialLinks: FooterLink[] = [
+  { label: "LinkedIn", href: "#" },
+  { label: "X", href: "#" },
+];
+
+function FooterLinkList({
+  title,
+  links,
+}: {
+  title: string;
+  links: FooterLink[];
+}) {
+  return (
+    <div>
+      <h5 className="font-[Archivo] text-ice font-medium text-sm mb-5">
+        {title}
+      </h5>
+      <ul className="flex flex-col gap-3">
+        {links.map((link) => (
+          <li key={link.label}>
+            <a
+              href={link.href}
+              className="font-[Archivo] text-ice/50 text-sm hover:text-ice transition-colors flex items-center justify-between group"
+            >
+              <span>{link.label}</span>
+              <span className="text-ice/30 group-hover:text-ice/60 transition-colors">
+                &rarr;
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export default function Footer() {
   return (
     <footer id="contact" className="relative bg-dark overflow-hidden">
       <div className="section-divider" />
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-20 pt-16 md:pt-24 pb-8">
-        {/* Big N7 branding */}
-        <div className="mb-16">
-          <svg viewBox="0 0 200 120" className="w-[120px] md:w-[180px] h-auto mb-8">
-            <text x="0" y="100" className="font-[Archivo]" fill="#E9F4F9" fontSize="120" fontWeight="700">
-              N7
-            </text>
-          </svg>
-          <p className="font-[Archivo] text-ice/60 text-base leading-relaxed max-w-[400px]">
-            Take the full advantage of going paper-less now. Transform your banking experience with our cutting-edge digital solutions.
-          </p>
+        {/* Top section: N7 branding + offices */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 mb-16">
+          {/* Large N7 gradient text */}
+          <div className="shrink-0">
+            <svg
+              viewBox="0 0 240 180"
+              className="w-[160px] md:w-[240px] lg:w-[280px] h-auto"
+              aria-label="N7"
+            >
+              <defs>
+                <linearGradient
+                  id="n7-gradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="5.68%" stopColor="#00b4fd" />
+                  <stop offset="86.98%" stopColor="#003ace" />
+                </linearGradient>
+              </defs>
+              <text
+                x="0"
+                y="150"
+                className="font-[Archivo]"
+                fill="url(#n7-gradient)"
+                fontSize="180"
+                fontWeight="800"
+              >
+                N7
+              </text>
+            </svg>
+          </div>
+
+          {/* Office locations */}
+          <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-8">
+            {offices.map((office) => (
+              <div key={office.address}>
+                <h5 className="font-[Archivo] text-ice font-medium text-sm mb-3">
+                  {office.city}
+                </h5>
+                <p className="font-[Archivo] text-ice/40 text-sm leading-relaxed">
+                  {office.address}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Footer links */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
-          <div>
-            <h5 className="font-[Archivo] text-ice font-medium text-sm mb-4">Products</h5>
-            <ul className="flex flex-col gap-3">
-              {["Core Banking", "Digital Banking", "Open Banking", "Loan Origination", "Loan Management"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="font-[Archivo] text-ice/50 text-sm hover:text-ice transition-colors">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h5 className="font-[Archivo] text-ice font-medium text-sm mb-4">Company</h5>
-            <ul className="flex flex-col gap-3">
-              {["About Us", "Careers", "Press", "Contact", "Partners"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="font-[Archivo] text-ice/50 text-sm hover:text-ice transition-colors">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h5 className="font-[Archivo] text-ice font-medium text-sm mb-4">Resources</h5>
-            <ul className="flex flex-col gap-3">
-              {["Documentation", "API Reference", "Blog", "Case Studies", "Webinars"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="font-[Archivo] text-ice/50 text-sm hover:text-ice transition-colors">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h5 className="font-[Archivo] text-ice font-medium text-sm mb-4">Legal</h5>
-            <ul className="flex flex-col gap-3">
-              {["Privacy Policy", "Terms of Service", "Cookie Policy", "Security", "Compliance"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="font-[Archivo] text-ice/50 text-sm hover:text-ice transition-colors">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* Link columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mb-16">
+          <FooterLinkList title="Solutions" links={solutionsLinks} />
+          <FooterLinkList title="N7 Banking" links={bankingLinks} />
+          <FooterLinkList title="Our Socials" links={socialLinks} />
         </div>
 
         {/* Bottom bar */}
         <div className="section-divider mb-6" />
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pb-6">
-          <p className="font-[Archivo] text-ice/40 text-sm">
-            &copy; 2026 N7 Banking Platform. All rights reserved.
+        <div className="pb-6">
+          <p className="font-[Archivo] text-ice/30 text-xs leading-relaxed text-center md:text-left">
+            Copyright &copy; 2022 by Linktia Infosystems Limited &mdash; CB7
+            and N7 as Commercial Brand &mdash; Registered under the Companies
+            Act 2006 in England and Wales | Number of Incorporation 13100992
           </p>
-          <div className="flex items-center gap-4">
-            {/* Social icons */}
-            {[
-              <svg key="tw" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" /></svg>,
-              <svg key="li" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z" /></svg>,
-              <svg key="gh" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" /></svg>,
-            ].map((icon, i) => (
-              <a key={i} href="#" className="text-ice/40 hover:text-ice transition-colors">
-                {icon}
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </footer>

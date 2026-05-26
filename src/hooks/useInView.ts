@@ -1,17 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 
-export function useInView(threshold = 0.15) {
+export function useInView(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
+    // If the element is already in viewport on mount, mark as animated immediately
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      setHasAnimated(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
+          setHasAnimated(true);
           observer.unobserve(el);
         }
       },
@@ -22,5 +29,5 @@ export function useInView(threshold = 0.15) {
     return () => observer.disconnect();
   }, [threshold]);
 
-  return { ref, isVisible };
+  return { ref, isVisible: hasAnimated };
 }

@@ -17,12 +17,12 @@ function App() {
       <Solutions />
       <CloudBanking />
       <Stats />
-      <CtaBanner />
+      <CtaBanner brand="CB7" />
       <Marquee />
       <DigitalBanking />
-      <CtaBanner variant="compact" />
+      <CtaBanner variant="compact" brand="N7" />
       <CaseStudies />
-      <CtaBanner variant="compact" />
+      <CtaBanner variant="compact" brand="CB7" />
       <Footer />
     </div>
   );

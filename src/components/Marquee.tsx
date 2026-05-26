@@ -1,41 +1,51 @@
 export default function Marquee() {
-  const logos = ["N7", "CB7", "API", "LOS", "LMS", "N7", "CB7", "API", "LOS", "LMS"];
+  const items = [
+    { type: "brand", text: "N7" },
+    { type: "text", text: "Say" },
+    { type: "emoji", text: "👋" },
+    { type: "text", text: "to the new way of banking" },
+    { type: "brand", text: "CB7" },
+    { type: "text", text: "Say" },
+    { type: "emoji", text: "👋" },
+    { type: "text", text: "to the new way of banking" },
+    { type: "brand", text: "N7" },
+    { type: "text", text: "Say" },
+    { type: "emoji", text: "👋" },
+    { type: "text", text: "to the new way of banking" },
+    { type: "brand", text: "CB7" },
+    { type: "text", text: "Say" },
+  ];
+
+  const MarqueeContent = () => (
+    <>
+      {items.map((item, i) => (
+        <span key={i} className="flex items-center gap-4 shrink-0">
+          {item.type === "brand" ? (
+            <span className="font-[Chivo_Mono] text-blue-primary text-base font-medium uppercase">
+              {item.text}
+            </span>
+          ) : item.type === "emoji" ? (
+            <span className="text-xl">{item.text}</span>
+          ) : (
+            <span className="font-[Archivo] font-medium text-ice text-base whitespace-nowrap">
+              {item.text}
+            </span>
+          )}
+          <span className="text-ice/30 mx-2">·</span>
+        </span>
+      ))}
+    </>
+  );
 
   return (
-    <section className="relative bg-dark-alt overflow-hidden border-y border-ice/10">
-      <div className="py-5 md:py-6">
+    <section className="relative bg-dark overflow-hidden border-y border-ice/8">
+      <div className="py-4 md:py-5">
         <div className="flex overflow-hidden">
-          <div className="animate-marquee flex items-center gap-8 shrink-0 pr-8">
-            {logos.map((logo, i) => (
-              <div key={i} className="flex items-center gap-8 shrink-0">
-                <span className="font-[Archivo] font-medium text-ice text-lg md:text-xl whitespace-nowrap">
-                  {i === 0 && "Say "}
-                  {i === 0 && <span className="inline-block mx-1">👋</span>}
-                  {i === 0 && " to the new way of banking"}
-                </span>
-                <div className="w-px h-6 bg-ice/20" />
-                <span className="font-[Chivo_Mono] text-blue-primary text-sm uppercase font-medium">
-                  {logo}
-                </span>
-                <div className="w-px h-6 bg-ice/20" />
-              </div>
-            ))}
+          <div className="animate-marquee flex items-center gap-4 shrink-0 pr-4">
+            <MarqueeContent />
           </div>
-          <div className="animate-marquee flex items-center gap-8 shrink-0 pr-8" aria-hidden>
-            {logos.map((logo, i) => (
-              <div key={i} className="flex items-center gap-8 shrink-0">
-                <span className="font-[Archivo] font-medium text-ice text-lg md:text-xl whitespace-nowrap">
-                  {i === 0 && "Say "}
-                  {i === 0 && <span className="inline-block mx-1">👋</span>}
-                  {i === 0 && " to the new way of banking"}
-                </span>
-                <div className="w-px h-6 bg-ice/20" />
-                <span className="font-[Chivo_Mono] text-blue-primary text-sm uppercase font-medium">
-                  {logo}
-                </span>
-                <div className="w-px h-6 bg-ice/20" />
-              </div>
-            ))}
+          <div className="animate-marquee flex items-center gap-4 shrink-0 pr-4" aria-hidden="true">
+            <MarqueeContent />
           </div>
         </div>
       </div>
