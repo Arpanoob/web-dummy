@@ -29,7 +29,7 @@ export default function DigitalBanking() {
       id="features"
       ref={ref}
       className={`relative overflow-hidden transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-      style={{ background: "#f8f9fa" }}
+      style={{ background: "white" }}
     >
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-20 py-16 md:py-24">
         {/* Subsection 1: Digital banking out-of-the-box */}
@@ -81,9 +81,9 @@ export default function DigitalBanking() {
         </div>
 
         {/* Subsection 2: No legacy IT systems */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24">
+        <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24 m">
           {/* Left features */}
-          <div>
+          <div className="relative z-10">
             <h3 className="font-[Archivo] font-semibold text-gray-900 text-[24px] md:text-[30px] leading-[1.2] tracking-[-0.3px] mb-3">
               No legacy IT systems
             </h3>
