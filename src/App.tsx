@@ -24,7 +24,7 @@ function App() {
       <CtaBanner variant="compact" brand="N7" />
       <Insights />
       <CaseStudies />
-      <CtaBanner variant="compact" brand="CB7" />
+      <CtaBanner variant="compact" brand="CB7" bg="dark" />
       <Footer />
     </div>
   );

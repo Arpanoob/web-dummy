@@ -35,10 +35,20 @@ const caseStudies: CaseStudy[] = [
   },
 ];
 
-function N7Symbol() {
+function ArrowLeft() {
   return (
-    <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-      <path d="M20 20C20 20 30 30 40 20C50 10 60 20 60 20C60 20 50 30 60 40C70 50 60 60 60 60C60 60 50 50 40 60C30 70 20 60 20 60C20 60 30 50 20 40C10 30 20 20 20 20Z" fill="#00b4fd"/>
+    <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+      <circle cx="21" cy="21" r="20.3196" stroke="#00B4FD" strokeWidth="1.36074" />
+      <path d="M31.577 21L12.41 21M21 31.577L13.665 24.242C11.874 22.451 11.874 19.549 13.665 17.758L21 10.423" stroke="#00B4FD" strokeWidth="0.952" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function ArrowRight() {
+  return (
+    <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+      <circle cx="21" cy="21" r="20.3196" stroke="#00B4FD" strokeWidth="1.36074" />
+      <path d="M10.423 21L29.59 21M21 31.577L28.335 24.242C30.126 22.451 30.126 19.549 28.335 17.758L21 10.423" stroke="#00B4FD" strokeWidth="0.952" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -72,31 +82,32 @@ export default function CaseStudies() {
           Our Case Studies
         </h2>
 
-        {/* Carousel */}
-        <div className="relative">
-          {/* Peeking cards on edges */}
-          <div className="hidden lg:block absolute left-0 top-0 bottom-0 w-[60px] z-0">
-            <div className="h-full glass-card rounded-xl opacity-30" />
-          </div>
-          <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[60px] z-0">
-            <div className="h-full glass-card rounded-xl opacity-30" />
-          </div>
+        {/* Carousel with stacked cards */}
+        <div className="relative max-w-[1015px] mx-auto">
+          {/* Back card (smallest, most faded) — shifted right and down */}
+          <div className="hidden lg:block absolute left-[25%] right-[-5%] top-[7%] bottom-[-2%] bg-[#01141B] rounded-[16px] opacity-30" />
+          {/* Middle card — slightly shifted right and down */}
+          <div className="hidden lg:block absolute left-[8%] right-[-2%] top-[4%] bottom-[-1%] bg-[#01141B] rounded-[16px] opacity-50" />
 
-          {/* Main card */}
-          <div className="relative z-10 mx-auto max-w-[960px]">
-            <div className="glass-card rounded-2xl overflow-hidden flex flex-col md:flex-row min-h-[340px]">
-              {/* Left: decorative panel with N7 symbols */}
-              <div className="md:w-1/2 bg-blue-navy/80 p-8 md:p-10 flex items-center justify-center">
-                <div className="grid grid-cols-2 gap-4">
-                  <N7Symbol />
-                  <N7Symbol />
-                  <N7Symbol />
-                  <N7Symbol />
+          {/* Front card (active) */}
+          <div className="relative z-10">
+            <div className="bg-[#01141B] rounded-[18px] overflow-hidden flex flex-col md:flex-row min-h-[380px] shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+              {/* Left: icon panel */}
+              <div className="md:w-[42%] bg-[#07193C] p-8 md:p-10 flex items-center justify-center min-h-[240px]">
+                <div className="grid grid-cols-2 gap-5">
+                  {[0, 1, 2, 3].map((i) => (
+                    <img
+                      key={i}
+                      src="/images/icons/fintech-icon.svg"
+                      alt=""
+                      className="w-16 h-16 opacity-60"
+                    />
+                  ))}
                 </div>
               </div>
 
               {/* Right: content */}
-              <div className="md:w-1/2 bg-dark-alt p-8 md:p-10 flex flex-col justify-center">
+              <div className="md:w-[58%] p-8 md:p-10 flex flex-col justify-center">
                 <span className="font-[Chivo_Mono] text-blue-primary text-[11px] uppercase tracking-widest mb-4 inline-block">
                   {activeStudy.tag}
                 </span>
@@ -113,7 +124,7 @@ export default function CaseStudies() {
                 </div>
                 <a
                   href="#"
-                  className="font-[Chivo_Mono] text-[13px] uppercase tracking-wider text-ice border border-ice/30 px-6 py-3 rounded-full hover:border-ice/60 hover:bg-ice/5 transition-all self-start"
+                  className="font-[Chivo_Mono] text-[13px] uppercase tracking-wider text-ice border border-ice/20 px-6 py-3 rounded-[10px] hover:border-ice/40 hover:bg-ice/5 transition-all self-start"
                 >
                   Read More
                 </a>
@@ -122,51 +133,46 @@ export default function CaseStudies() {
           </div>
         </div>
 
-        {/* Navigation */}
-        <div className="flex items-center justify-between mt-8 max-w-[960px] mx-auto">
-          {/* Arrows and dots */}
-          <div className="flex items-center gap-4">
-            <button
-              onClick={handlePrev}
-              className="w-10 h-10 rounded-full border border-ice/20 flex items-center justify-center text-ice/60 hover:text-ice hover:border-ice/40 transition-all"
-              aria-label="Previous slide"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M19 12H5M12 19l-7-7 7-7" />
-              </svg>
-            </button>
+        {/* Navigation — arrows + dots centered */}
+        <div className="flex items-center justify-center mt-10 gap-5">
+          <button
+            onClick={handlePrev}
+            className="hover:opacity-80 transition-opacity"
+            aria-label="Previous slide"
+          >
+            <ArrowLeft />
+          </button>
 
-            {/* Dots */}
-            <div className="flex items-center gap-2">
-              {caseStudies.map((_, i) => (
+          {/* Dots */}
+          <div className="flex items-center gap-3">
+            {caseStudies.map((_, i) => {
+              if (i === activeIndex) {
+                return (
+                  <button
+                    key={i}
+                    className="w-[38px] h-[12px] rounded-full bg-[#0B4B63] transition-all"
+                    aria-label={`Slide ${i + 1} (active)`}
+                  />
+                );
+              }
+              return (
                 <button
                   key={i}
                   onClick={() => setActiveIndex(i)}
-                  className={`rounded-full transition-all ${i === activeIndex ? "w-6 h-2.5 gradient-primary" : "w-2.5 h-2.5 bg-ice/20 hover:bg-ice/40"}`}
+                  className="w-[12px] h-[12px] rounded-full border border-[#0B4B63] hover:bg-[#0B4B63]/30 transition-all"
                   aria-label={`Go to slide ${i + 1}`}
                 />
-              ))}
-            </div>
-
-            <button
-              onClick={handleNext}
-              className="w-10 h-10 rounded-full border border-ice/20 flex items-center justify-center text-ice/60 hover:text-ice hover:border-ice/40 transition-all"
-              aria-label="Next slide"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </button>
+              );
+            })}
           </div>
 
-          {/* View all */}
-          <a
-            href="#"
-            className="font-[Chivo_Mono] text-[13px] uppercase tracking-wider text-blue-primary hover:text-ice transition-colors flex items-center gap-1.5"
+          <button
+            onClick={handleNext}
+            className="hover:opacity-80 transition-opacity"
+            aria-label="Next slide"
           >
-            View All
-            <span aria-hidden="true">&rarr;</span>
-          </a>
+            <ArrowRight />
+          </button>
         </div>
       </div>
     </section>

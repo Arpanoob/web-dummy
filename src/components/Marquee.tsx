@@ -27,7 +27,7 @@ function MarqueeContent() {
           ) : item.type === "emoji" ? (
             <span className="text-xl">{item.text}</span>
           ) : (
-            <span className="font-[Archivo] font-medium text-ice text-base whitespace-nowrap">
+            <span className="font-[Archivo] font-medium text-black text-base whitespace-nowrap">
               {item.text}
             </span>
           )}
@@ -40,7 +40,7 @@ function MarqueeContent() {
 
 export default function Marquee() {
   return (
-    <section className="relative bg-dark overflow-hidden border-y border-ice/8">
+    <section className="relative bg-white overflow-hidden border-y border-ice/8">
       <div className="py-4 md:py-5">
         <div className="flex overflow-hidden">
           <div className="animate-marquee flex items-center gap-4 shrink-0 pr-4">
