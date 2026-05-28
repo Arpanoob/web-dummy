@@ -7,17 +7,17 @@ const offices = [
   {
     city: "London",
     address:
-      "Linktia Infosystems Ltd \u2013 CB7, 26 Main Road Sundridge, TN14 6EP, England, United Kingdom.",
+      "Linktia Infosystems Ltd \u2013 CB7, 26 Main Road Sundridge,TN14 6EP, England, United Kingdom.",
   },
   {
     city: "Dubai",
     address:
-      "Linktia Infosystems Ltd \u2013 CB7, Jumeirah Business, Center 5 Cluster W, Jumeirah Lakes Towers, Dubai, United Arab Emirates.",
+      "Linktia Infosystems Ltd \u2013 CB7,Jumeirah Business, Center 5 Cluster W, Jumeirah Lakes Towers, Dubai, United Arab Emirates",
   },
   {
-    city: "Pune",
+    city: "London",
     address:
-      "Linktia Infosystems Ltd \u2013 CB7, Nirmal, Anand Nagar, Suncity Road, Pune, Maharashtra, 411041, India.",
+      "Linktia Infosystems Ltd \u2013 CB7,Nirmal, Anand Nagar, Suncity Road, Pune, Maharashtra, 411041, India",
   },
 ];
 
@@ -46,13 +46,7 @@ const socialLinks: FooterLink[] = [
   { label: "X", href: "#" },
 ];
 
-function FooterLinkList({
-  title,
-  links,
-}: {
-  title: string;
-  links: FooterLink[];
-}) {
+function FooterLinkList({ title, links }: { title: string; links: FooterLink[] }) {
   return (
     <div>
       <h5 className="font-[Archivo] text-ice font-medium text-sm mb-5">
@@ -66,9 +60,7 @@ function FooterLinkList({
               className="font-[Archivo] text-ice/50 text-sm hover:text-ice transition-colors flex items-center justify-between group"
             >
               <span>{link.label}</span>
-              <span className="text-ice/30 group-hover:text-ice/60 transition-colors">
-                &rarr;
-              </span>
+              <span className="text-ice/30 group-hover:text-ice/60 transition-colors">&rarr;</span>
             </a>
           </li>
         ))}
@@ -92,25 +84,12 @@ export default function Footer() {
               aria-label="N7"
             >
               <defs>
-                <linearGradient
-                  id="n7-gradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
+                <linearGradient id="n7-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="5.68%" stopColor="#00b4fd" />
                   <stop offset="86.98%" stopColor="#003ace" />
                 </linearGradient>
               </defs>
-              <text
-                x="0"
-                y="150"
-                className="font-[Archivo]"
-                fill="url(#n7-gradient)"
-                fontSize="180"
-                fontWeight="800"
-              >
+              <text x="0" y="150" className="font-[Archivo]" fill="url(#n7-gradient)" fontSize="180" fontWeight="800">
                 N7
               </text>
             </svg>
@@ -118,8 +97,8 @@ export default function Footer() {
 
           {/* Office locations */}
           <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-8">
-            {offices.map((office) => (
-              <div key={office.address}>
+            {offices.map((office, i) => (
+              <div key={i}>
                 <h5 className="font-[Archivo] text-ice font-medium text-sm mb-3">
                   {office.city}
                 </h5>
@@ -141,10 +120,8 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="section-divider mb-6" />
         <div className="pb-6">
-          <p className="font-[Archivo] text-ice/30 text-xs leading-relaxed text-center md:text-left">
-            Copyright &copy; 2022 by Linktia Infosystems Limited &mdash; CB7
-            and N7 as Commercial Brand &mdash; Registered under the Companies
-            Act 2006 in England and Wales | Number of Incorporation 13100992
+          <p className="font-[Archivo] text-ice/30 text-xs leading-relaxed">
+            Copyright &copy; 2022 by Linktia Infosystems Limited &mdash; [CB7 and N7 as Commercial Brand] &mdash; [Registered under the Companies Act 2006 in England and Wales | Number of Incorporation 13100992]
           </p>
         </div>
       </div>

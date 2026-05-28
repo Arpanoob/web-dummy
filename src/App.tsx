@@ -6,6 +6,7 @@ import Stats from "./components/Stats";
 import CtaBanner from "./components/CtaBanner";
 import Marquee from "./components/Marquee";
 import DigitalBanking from "./components/DigitalBanking";
+import Insights from "./components/Insights";
 import CaseStudies from "./components/CaseStudies";
 import Footer from "./components/Footer";
 
@@ -21,6 +22,7 @@ function App() {
       <Marquee />
       <DigitalBanking />
       <CtaBanner variant="compact" brand="N7" />
+      <Insights />
       <CaseStudies />
       <CtaBanner variant="compact" brand="CB7" />
       <Footer />

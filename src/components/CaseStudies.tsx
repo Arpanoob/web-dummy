@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { useInView } from "../hooks/useInView";
 
 interface CaseStudy {
@@ -36,44 +35,12 @@ const caseStudies: CaseStudy[] = [
   },
 ];
 
-function BrandSymbol({ index }: { index: number }) {
-  const variants = [
-    // Cross / X shape
-    <svg key="a" width="48" height="48" viewBox="0 0 48 48" fill="none">
-      <path
-        d="M12 12l24 24M36 12L12 36"
-        stroke="#00b4fd"
-        strokeWidth="3"
-        strokeLinecap="round"
-      />
-    </svg>,
-    // Plus shape
-    <svg key="b" width="48" height="48" viewBox="0 0 48 48" fill="none">
-      <path
-        d="M24 8v32M8 24h32"
-        stroke="#00b4fd"
-        strokeWidth="3"
-        strokeLinecap="round"
-      />
-    </svg>,
-    // Diamond
-    <svg key="c" width="48" height="48" viewBox="0 0 48 48" fill="none">
-      <path
-        d="M24 6L42 24L24 42L6 24Z"
-        stroke="#00b4fd"
-        strokeWidth="2.5"
-        strokeLinejoin="round"
-        fill="none"
-      />
-    </svg>,
-    // Circle with dot
-    <svg key="d" width="48" height="48" viewBox="0 0 48 48" fill="none">
-      <circle cx="24" cy="24" r="16" stroke="#00b4fd" strokeWidth="2.5" />
-      <circle cx="24" cy="24" r="4" fill="#00b4fd" />
-    </svg>,
-  ];
-
-  return variants[index % variants.length];
+function N7Symbol() {
+  return (
+    <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+      <path d="M20 20C20 20 30 30 40 20C50 10 60 20 60 20C60 20 50 30 60 40C70 50 60 60 60 60C60 60 50 50 40 60C30 70 20 60 20 60C20 60 30 50 20 40C10 30 20 20 20 20Z" fill="#00b4fd"/>
+    </svg>
+  );
 }
 
 export default function CaseStudies() {
@@ -82,11 +49,11 @@ export default function CaseStudies() {
 
   const totalSlides = caseStudies.length;
 
-  function handlePrev(): void {
+  function handlePrev() {
     setActiveIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
   }
 
-  function handleNext(): void {
+  function handleNext() {
     setActiveIndex((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
   }
 
@@ -118,13 +85,13 @@ export default function CaseStudies() {
           {/* Main card */}
           <div className="relative z-10 mx-auto max-w-[960px]">
             <div className="glass-card rounded-2xl overflow-hidden flex flex-col md:flex-row min-h-[340px]">
-              {/* Left: decorative panel */}
+              {/* Left: decorative panel with N7 symbols */}
               <div className="md:w-1/2 bg-blue-navy/80 p-8 md:p-10 flex items-center justify-center">
-                <div className="grid grid-cols-2 gap-6">
-                  <BrandSymbol index={0} />
-                  <BrandSymbol index={1} />
-                  <BrandSymbol index={2} />
-                  <BrandSymbol index={3} />
+                <div className="grid grid-cols-2 gap-4">
+                  <N7Symbol />
+                  <N7Symbol />
+                  <N7Symbol />
+                  <N7Symbol />
                 </div>
               </div>
 
@@ -133,22 +100,20 @@ export default function CaseStudies() {
                 <span className="font-[Chivo_Mono] text-blue-primary text-[11px] uppercase tracking-widest mb-4 inline-block">
                   {activeStudy.tag}
                 </span>
-                <h3 className="font-[Archivo] font-medium text-ice text-[22px] md:text-[26px] leading-[1.25] mb-6">
+                <h3 className="font-[Archivo] font-medium text-ice text-[22px] md:text-[28px] leading-[1.25] mb-6">
                   {activeStudy.heading}
                 </h3>
                 <div className="flex items-center gap-3 mb-8">
                   <div className="w-9 h-9 rounded-lg gradient-primary flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">
-                      {activeStudy.brandIcon}
-                    </span>
+                    <span className="text-white font-bold text-sm">{activeStudy.brandIcon}</span>
                   </div>
-                  <span className="font-[Archivo] text-ice text-base font-medium">
+                  <span className="font-[Archivo] text-ice/60 text-base font-medium">
                     {activeStudy.brand}
                   </span>
                 </div>
                 <a
                   href="#"
-                  className="font-[Chivo_Mono] text-[13px] uppercase tracking-wider text-ice border border-ice/30 px-6 py-3 rounded-[10px] hover:border-ice/60 hover:bg-ice/5 transition-all self-start"
+                  className="font-[Chivo_Mono] text-[13px] uppercase tracking-wider text-ice border border-ice/30 px-6 py-3 rounded-full hover:border-ice/60 hover:bg-ice/5 transition-all self-start"
                 >
                   Read More
                 </a>
@@ -166,36 +131,13 @@ export default function CaseStudies() {
               className="w-10 h-10 rounded-full border border-ice/20 flex items-center justify-center text-ice/60 hover:text-ice hover:border-ice/40 transition-all"
               aria-label="Previous slide"
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M19 12H5M12 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              onClick={handleNext}
-              className="w-10 h-10 rounded-full border border-ice/20 flex items-center justify-center text-ice/60 hover:text-ice hover:border-ice/40 transition-all"
-              aria-label="Next slide"
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </button>
 
             {/* Dots */}
-            <div className="flex items-center gap-2 ml-2">
+            <div className="flex items-center gap-2">
               {caseStudies.map((_, i) => (
                 <button
                   key={i}
@@ -205,6 +147,16 @@ export default function CaseStudies() {
                 />
               ))}
             </div>
+
+            <button
+              onClick={handleNext}
+              className="w-10 h-10 rounded-full border border-ice/20 flex items-center justify-center text-ice/60 hover:text-ice hover:border-ice/40 transition-all"
+              aria-label="Next slide"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
           </div>
 
           {/* View all */}

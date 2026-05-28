@@ -79,7 +79,7 @@ export default function Solutions() {
             </h2>
             <a
               href="#contact"
-              className="border border-ice text-ice font-[Chivo_Mono] text-[15px] uppercase px-[59px] py-[15px] rounded-[10px] hover:bg-ice/10 transition-all w-fit"
+              className="border border-ice text-ice font-[Chivo_Mono] text-[15px] uppercase px-[59px] py-[15px] rounded-full hover:bg-ice/10 transition-all w-fit"
             >
               request demo
             </a>
